@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% block title %}  {{ title }} {% endblock %}
+
+{% block content %}
+
+{% from "_macro.html" import render_field %}
+  
+<div class="container">
+  <div class="row">
+    <div class="">
+      <div class="bg-light rounded h-100 p-4">
+        <h3 class="mb-4">Registrar Estacionamiento</h3>
+        <form method="POST">
+          <input type="hidden" name="csrf_token" , value="{{ csrf_token() }}" />
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                {{ render_field(form.username, class='form-control') }}
+                <!-- <input type="email" class="form-control" id="exampleInputEmail1"aria-describedby="emailHelp"> -->
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                </div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              {{ render_field(form.email, class='form-control') }}
+                <!-- <input type="password" class="form-control" id="exampleInputPassword1"> -->
+            </div>
+            <div class="mb-3 form-check">
+              <label class="form-check-label" for="exampleCheck1">Check me out</label>
+              {{ render_field(form.password, class='form-control') }}
+                <!-- <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+            </div>
+            {{form.honeypot}}
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+     </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

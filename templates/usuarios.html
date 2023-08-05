@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %} 
+{% block title %}  {{ title }} {% endblock %}
+
+{% block barra %}
+<div class="navbar-nav w-100">
+    <a href="{{ url_for('index') }}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Inicio</a>
+    <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Tickets</a>
+        <div class="dropdown-menu bg-transparent border-0">
+            <a href="{{ url_for('entradas') }}" class="dropdown-item">Entradas</a>
+            <a href="{{ url_for('salidas') }}" class="dropdown-item">Salidas</a>
+        </div>
+    </div>
+    <a href="{{ url_for('tarifas') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Tarifas</a>
+    <a href="{{ url_for('usuarios') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Usuarios</a>
+</div>         
+{% endblock %}
+
+
+
+{% block content %}
+
+    {% from "_macro.html" import render_field %}
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Registrar Usuario</h3>
+                    </div>
+                    <form action="" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="row mb-3">
+                            <label for="inputuser" class="col-sm-5 col-form-label">Usuario:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.username, class="form-control", id="inputuser", placeholder="Usuario") }}
+                                <!-- <input type="number" name="usuario" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputrol" class="col-sm-5 col-form-label">Rol:</label>
+                            <div class="col-sm-7">
+                                <select class="form-select mb-3" aria-label="Default select example" name="rol" required>
+                                    <option value="" disabled selected>Selecciona un rol</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Trabajador">Trabajador</option>
+                                        <option value="Técnico">Técnico</option>
+                                        <option value="Gerente">Gerente</option>
+                                        <option value="Becario">Becario</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Contraseña:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.password, class="form-control", id="inputpass", placeholder="Contraseña") }}
+                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Usuarios</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Rol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for us in users:%}
+                                <tr>
+                                    <td>{{ us.username }}</td>
+                                    <td>{{ us.rol }}</td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

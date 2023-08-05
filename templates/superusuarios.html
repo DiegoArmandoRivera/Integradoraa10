@@ -1,0 +1,118 @@
+{% extends 'base/base.html' %} 
+{% block title %}  {{ title }} {% endblock %}
+
+{% block barra %}
+<div class="navbar-nav w-100">
+    <a href="{{ url_for('index') }}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Inicio</a>
+    <a href="{{ url_for('superusuarios') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Usuarios</a>
+</div>         
+{% endblock %}
+
+{% block content %}
+
+    {% from "_macro.html" import render_field %}
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Registrar Usuario</h3>
+                    </div>
+                    <form action="" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="row mb-3">
+                            <label for="inputuser" class="col-sm-5 col-form-label">Usuario:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.username, class="form-control", id="inputuser", placeholder="Usuario") }}
+                                <!-- <input type="number" name="usuario" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputrol" class="col-sm-5 col-form-label">Rol:</label>
+                            <div class="col-sm-7">
+                                <select class="form-select mb-3" aria-label="Default select example" name="rol" required>
+                                    <option value="" disabled selected>Selecciona un rol</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Trabajador">Trabajador</option>
+                                        <option value="Técnico">Técnico</option>
+                                        <option value="Gerente">Gerente</option>
+                                        <option value="Becario">Becario</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Contraseña:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.password, class="form-control", id="inputpass", placeholder="Contraseña") }}
+                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Estacionamiento:</label>
+                            <div class="col-sm-7">
+                                <select class="form-select mb-3" aria-label="Default select example" name="estacionamiento"  required>
+                                    <option value="" disabled selected>Selecciona un estacionamiento</option>
+                                    {% for estacionamiento in estacio %}
+                                        <option value="{{ estacionamiento.estacionamiento }}">{{ estacionamiento.estacionamiento }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Eliminar Usuarios</h3>
+                    </div>
+                    <form action="{{ url_for('eliminar') }}" method="POST">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Usuario:</label>
+                            <div class="col-sm-7">
+                                <select class="form-select mb-3" aria-label="Default select example" name="username" required>
+                                    <option value="" disabled selected>Selecciona un usuario</option>
+                                    {% for us in userall:%}
+                                        <option value="{{ us.username }}">{{ us.username }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-danger m-2">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h3 class="mb-0">Usuarios</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col">Estacionamiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for usi in userall:%}
+                        <tr>
+                            <td>{{ usi.username }}</td>
+                            <td>{{ usi.rol }}</td>
+                            <td>{{ usi.estacionamiento }}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

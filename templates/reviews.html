@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% block title %}  {{ title }} {% endblock %}
+{% block content %}
+
+    <div class="container">
+        {% if comments %}
+            {% for comment in comments.items %}
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-lgoffset-1">
+                        <hr>
+                        <h4> {{ comment.username }} </h2>
+                        <h5> {{ date_format(comment.create_date) }} </h5>
+                        <p> {{ comment.text }} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <a href="/reviews/{{current_page-1}}"><button class="btn btn-primary">Pág Anterior</button></a>
+    <a href="/reviews/{{current_page+1}}"><button class="btn btn-primary">Pág Siguiente</button></a>
+{% endblock %}
