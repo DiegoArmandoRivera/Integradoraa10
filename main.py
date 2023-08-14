@@ -24,11 +24,17 @@ from flask_wtf.csrf import CSRFProtect
 import forms 
 from datetime import datetime
 from flask_bootstrap import Bootstrap
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config.from_object(DevelopmentConfig)
 csrf = CSRFProtect(app)
 mail = Mail()
+csrf.init_app(app)
+db.init_app(app)
+mail.init_app(app)
+with app.app_context():
+    db.create_all()
 
 def send_email(user_email, username):
     msg = Message('Gracias por tu registro!', sender=app.config['MAIL_USERNAME'], recipients=[user_email])
@@ -140,7 +146,7 @@ def eliminar():
             success_message = 'Usuario Eliminado'
             flash(success_message)
             return redirect(url_for('superusuarios'))
-
+    return redirect(url_for('index'))
 
 @app.route('/entradas', methods = ['GET', 'POST']) #Terminado
 def entradas():
@@ -356,12 +362,5 @@ def signup():
 
 
 if __name__ == '__main__':
-    csrf.init_app(app)
-    db.init_app(app)
-    mail.init_app(app)
-    
-
-    with app.app_context():
-        db.create_all()
 
     app.run(port=8000)
