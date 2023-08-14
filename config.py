@@ -10,6 +10,6 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get('PASSWORD_EMAIL_CF')
 
 class DevelopmentConfig(Config):
-    DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://admin:Masterxbox19@reest.ciicou1qy8x0.us-east-1.rds.amazonaws.com/prueba'    
+    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://admin:Masterxbox19@reest.ciicou1qy8x0.us-east-1.rds.amazonaws.com/final'    
     SQLALCHEMY_TRACK_MODIFICATIONS = False
