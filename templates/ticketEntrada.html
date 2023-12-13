@@ -78,7 +78,9 @@
                                         <td>{{ boleto.entrada }}</td>
                                     </tr>
                                 </tbody>
+                                <br><h1>El código QR de su ticket es:</h1><br><img src="data:image/png;base64,{{ boleto.qr_code.decode() }}" style="width: 200px;">'
                             </table>
+
                             <h5 class="mb-4">El estacionamiento se deslinda de cualquier responsabilidad ante situación de daño o robo en el estacionamiento.</h5>
                         </div>
                     </div>

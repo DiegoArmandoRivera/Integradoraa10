@@ -23,7 +23,7 @@
 <div class="col-12">
     <div class="bg-light rounded h-100 p-4">
         <h3 class="mb-4">Salidas</h3>
-        <form action="{{ url_for('ticSalida')}}" method="POST">
+        <form action="{{ url_for('calSalida')}}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <div class="row mb-3">
                 <label for="inputEmail3" class="col-sm-2 col-form-label">Codigo de Entrada</label>

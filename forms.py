@@ -110,6 +110,18 @@ class CreateTari(Form):
         "Hora extra"
         , [validators.NumberRange(min=1, max=9999), validators.DataRequired()]
     )
+    pension_dia = IntegerField(
+        "Día"
+        , [validators.NumberRange(min=1, max=9999), validators.DataRequired()]
+    )
+    pension_semana = IntegerField(
+        "Semana"
+        , [validators.NumberRange(min=1, max=9999), validators.DataRequired()]
+    )
+    pension_mes = IntegerField(
+        "Mes"
+        , [validators.NumberRange(min=1, max=9999), validators.DataRequired()]
+    )
 
     
 class todoesta(Form):
@@ -141,5 +153,15 @@ class CreateUserTodo(Form):
         user = User.query.filter_by(username = username).first()
         if user is not None:
             raise validators.ValidationError('El usuario ya se encuentra registrado')
+
+class ModificarRol(Form):
+    username = StringField(
+        "Username",
+        [validators.length(min=4, max=30), validators.DataRequired()],
+    )
+    rol = StringField(
+        "Rol",
+        [validators.length(min=4, max=30), validators.DataRequired()]
+    )
 
 

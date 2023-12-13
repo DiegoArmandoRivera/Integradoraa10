@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
+from sqlalchemy import LargeBinary
 import datetime
 
 db = SQLAlchemy()
@@ -15,6 +16,7 @@ class Estacionamiento(db.Model):
     capacidad = db.Column(db.Integer())
     cp = db.Column(db.Integer())
     telefono =  db.Column(db.String(11))
+    lugares = db.Column(db.Integer)
 
     user = db.relationship('User')
     ticket = db.relationship('Ticket')
@@ -22,11 +24,12 @@ class Estacionamiento(db.Model):
 
     # create_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
-    def __init__(self, estacionamiento, capacidad, cp, telefono):
+    def __init__(self, estacionamiento, capacidad, cp, telefono, lugares):
         self.estacionamiento = estacionamiento
         self.capacidad = capacidad
         self.cp = cp
         self.telefono = telefono
+        self.lugares = lugares
 
 
 
@@ -66,6 +69,7 @@ class Ticket(db.Model):
     entrada = db.Column(db.DateTime)
     salida = db.Column(db.DateTime)
     costo = db.Column(db.Integer())
+    qr_code = db.Column(LargeBinary)
     estacionamiento = db.Column(db.ForeignKey('estacionamientos.estacionamiento'))
 
     def __init__(self, entrada,salida,costo,encargado,estacionamiento):
@@ -88,11 +92,17 @@ class Tarifa(db.Model):
     tolerancia = db.Column(db.Integer)
     primerasDos = db.Column(db.Integer)
     extra = db.Column(db.Integer)
+    pension_dia = db.Column(db.Integer)
+    pension_semana = db.Column(db.Integer)
+    pension_mes = db.Column(db.Integer)
     estacionamiento = db.Column(db.ForeignKey('estacionamientos.estacionamiento'))
     
-    def __init__(self,primerasDos,extra,tolerancia,estacionamiento):
+    def __init__(self,primerasDos,extra,tolerancia,pension_dia, pension_mes, pension_semana,estacionamiento):
         self.extra = extra
         self.primerasDos = primerasDos
         self.tolerancia = tolerancia
+        self.pension_dia = pension_dia
+        self.pension_semana = pension_semana
+        self.pension_mes = pension_mes
         self.estacionamiento = estacionamiento
 

@@ -56,7 +56,7 @@
                 <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="col-md-6 text-center p-4">
                         <div class="bg-light rounded h-100 p-4">
-                            <h3 class="mb-4">Seguro que desea salir de {{ est.estacionamiento }}</h3>
+                            <h3 class="mb-4">Vuelva pronto a {{ est.estacionamiento }}</h3>
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -87,21 +87,10 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <h5 class="mb-4">Oprima "Confirmar" para pagar la tarifa o "Cancelar" para regresar al menu principal </h5>
-
-                            <div style="display: flex; justify-content: space-between;">
-                                 <form action="{{ url_for('ticSalida')}}" method="POST">
-                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" name="codigo" value="{{ boleto.id }}">
-                                    <input type="hidden" name="salida" value="{{ salida }}">
-                                     <p></p>
-                                     <input type="submit" class="btn btn-primary rounded-pill py-3 px-5" value="Confirmar">
-
-                                 </form>
-                                <input type="submit" class="btn-danger rounded-pill py-3 px-5" value="Cancelar" onclick="cancelarPago()">
-                            </div>
+                            <h5 class="mb-4">Esperamos que el servicio haya sido de su agrado, el estacionamiento no se hace reponsable por robos o daños a vehiculos.</h5>
                         </div>
                         <p></p>
+                        <a class="btn btn-primary rounded-pill py-3 px-5" href="{{ url_for('salidas') }}">Volver</a>
                     </div>
                 </div>
             </div>
@@ -130,13 +119,6 @@
    
        <!-- Template Javascript -->
        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-
-        <script>
-            function cancelarPago() {
-                window.location.href = "{{ url_for('salidas') }}";
-             }
-        </script>
-
    
    </body>
    </html>

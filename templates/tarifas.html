@@ -52,6 +52,27 @@
                                 <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Pensión Día:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.pension_dia, class="form-control", id="inputpass2", placeholder="$") }}
+                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Pensión Semana:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.pension_semana, class="form-control", id="inputpass3", placeholder="$") }}
+                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="inputpass" class="col-sm-5 col-form-label">Pensión Mes:</label>
+                            <div class="col-sm-7">
+                                {{ render_field(form.pension_mes, class="form-control", id="inputpass4", placeholder="$") }}
+                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
+                            </div>
+                        </div>
                         <button type="submit" class="btn btn-warning m-2">Registrar</button>
                     </form>
                 </div>
@@ -81,6 +102,33 @@
                     </div>
                 </div>
             </div>
+
+
+                <div class="bg-light text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Tarifa Pensión</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Dia</th>
+                                    <th scope="col">Semana</th>
+                                    <th scope="col">Mes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ tari.pension_dia }}</td>
+                                    <td>{{ tari.pension_semana }}</td>
+                                    <td>{{ tari.pension_mes }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
         </div>
     </div>
 

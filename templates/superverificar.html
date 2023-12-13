@@ -17,47 +17,48 @@
     <div class="container-fluid pt-4 px-4">
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h3 class="mb-4">Estacionamiento</h3>
-                 <form action="" method="POST">
+                <h3 class="mb-4">Rango de fechas</h3>
+                 <form action="{{ url_for('registrados')}}" method="POST">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                    <div class="row mb-3">
-                        <label for="inputEmail3" class="col-sm-2 col-form-label">Estacionamiento:</label>
+                     <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Inicio:</label>
                         <div class="col-sm-10">
-                            <select class="form-select mb-3" aria-label="Default select example" name="estacionamiento"  required>
-                                <option value="" disabled selected>Selecciona un estacionamiento</option>
-                                {% for estacionamiento in estacio %}
-                                    <option value="{{ estacionamiento.estacionamiento }}">{{ estacionamiento.estacionamiento }}</option>
-                                {% endfor %}
-                            </select>
+                            <input type="date" name="fecha_inicio" class="form-control"  required>
+                        </div>
+                    </div>
+                     <div class="row mb-3">
+                        <label for="inputEmail3" class="col-sm-2 col-form-label">Fin:</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="fecha_fin" class="form-control"  required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-lg btn-primary m-2">Buscar</button>
                 </form>
             </div>
         </div>
+
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
-                <h3 class="mb-4">Tarifa</h3>
+                <h3 class="mb-4">Total de cobros</h3>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Tolerancia</th>
-                                <th scope="col">Primeras 2 horas</th>
-                                <th scope="col">Hora extra</th>
+                                <th scope="col">Total</th>
                             </tr>
                         </thead>
                         <tbody>
+
                             <tr>
-                                <td>{{ tari.tolerancia }}</td>
-                                <td>{{ tari.primerasDos }}</td>
-                                <td>{{ tari.extra }}</td>
+                                <td></td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+
         <div class="col-12">
             <div class="bg-light rounded h-100 p-4">
                 <h3 class="mb-4">Tickets</h3>

@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -90,7 +90,7 @@
                             <h5 class="mb-4">Oprima "Confirmar" para pagar la tarifa o "Cancelar" para regresar al menu principal </h5>
 
                             <div style="display: flex; justify-content: space-between;">
-                                 <form action="{{ url_for('ticSalida')}}" method="POST">
+                                 <form action="{{ url_for('ticSalidaQR')}}" method="GET">
                                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="codigo" value="{{ boleto.id }}">
                                     <input type="hidden" name="salida" value="{{ salida }}">
@@ -127,7 +127,7 @@
        <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment.min.js') }}"></script>
        <script src="{{ url_for('static', filename='lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
        <script src="{{ url_for('static', filename='lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-   
+
        <!-- Template Javascript -->
        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
@@ -137,6 +137,6 @@
              }
         </script>
 
-   
+
    </body>
    </html>

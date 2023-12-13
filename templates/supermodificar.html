@@ -19,7 +19,7 @@
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h3 class="mb-0">Registrar Usuario</h3>
+                        <h3 class="mb-0">Modificar Usuario</h3>
                     </div>
                     <form action="" method="POST">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -43,47 +43,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <label for="inputpass" class="col-sm-5 col-form-label">Contraseña:</label>
-                            <div class="col-sm-7">
-                                {{ render_field(form.password, class="form-control", id="inputpass", placeholder="Contraseña") }}
-                                <!-- <input type="number" name="password" class="form-control" id="inputEmail3" required> -->
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="inputpass" class="col-sm-5 col-form-label">Estacionamiento:</label>
-                            <div class="col-sm-7">
-                                <select class="form-select mb-3" aria-label="Default select example" name="estacionamiento"  required>
-                                    <option value="" disabled selected>Selecciona un estacionamiento</option>
-                                    {% for estacionamiento in estacio %}
-                                        <option value="{{ estacionamiento.estacionamiento }}">{{ estacionamiento.estacionamiento }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Registrar</button>
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-12 col-xl-6">
-                <div class="bg-light text-center rounded p-4">
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <h3 class="mb-0">Eliminar Usuarios</h3>
-                    </div>
-                    <form action="{{ url_for('eliminar') }}" method="POST">
-                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                        <div class="row mb-3">
-                            <label for="inputpass" class="col-sm-5 col-form-label">Usuario:</label>
-                            <div class="col-sm-7">
-                                <select class="form-select mb-3" aria-label="Default select example" name="username" required>
-                                    <option value="" disabled selected>Selecciona un usuario</option>
-                                    {% for us in userall %}
-                                        <option value="{{ us.username }}">{{ us.username }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-danger m-2">Eliminar</button>
+                        <button type="submit" class="btn btn-warning m-2">Actualizar</button>
                     </form>
                 </div>
             </div>

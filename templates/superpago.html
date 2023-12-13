@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %} 
+{% block title %}  {{ title }} {% endblock %}
+
+{% block barra %}
+<div class="navbar-nav w-100">
+    <a href="{{ url_for('index') }}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Inicio</a>
+    <a href="{{ url_for('superusuarios') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Usuarios</a>
+    <a href="{{ url_for('supermodificar') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Actualizar</a>
+    <a href="{{ url_for('superpago') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Pagar</a>
+</div>         
+{% endblock %}
+
+{% block content %}
+
+{% from "_macro.html" import render_field %}
+<div class="col-12">
+    <div class="bg-light rounded h-100 p-4">
+        <h3 class="mb-4">Pagar Salida</h3>
+        <form action="{{ url_for('calSalidasuper')}}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label">Codigo de Entrada</label>
+                <div class="col-sm-10">
+                    <input type="number" name="codigo" class="form-control" id="inputEmail3" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Pagar</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
